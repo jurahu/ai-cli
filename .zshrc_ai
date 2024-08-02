@@ -1,0 +1,16 @@
+# ------------------------- AI -------------------------
+
+function insert_tmp_result {
+  if [[ -f ~/.ai_cli/tmp.result.sh ]]; then
+    local result=$(<~/.ai_cli/tmp.result.sh)
+    LBUFFER+=" $result"
+    zle reset-prompt
+  else
+    echo "File not found: ~/.ai_cli/tmp.result.sh" >&2
+  fi
+}
+
+zle -N insert_tmp_result
+bindkey '^T' insert_tmp_result
+alias ai='node ~/.ai_cli/ai.js'
+alias aie='source ~/.ai_cli/tmp.result.sh'
