@@ -28,6 +28,8 @@ This tool provides AI capabilities directly in your command line, translating na
     Add the contents of `.zshrc_ai` to your `~/.zshrc` file. A simple way is:
     ```bash
     cat ~/.ai_cli/.zshrc_ai >> ~/.zshrc
+    # if you want to use litellm proxy or ollama or some other compatible endpoint
+    echo 'AI_CLI_LLM_UR="https://litellm.in.example.com/"' >> ~/.zshrc
     ```
     Then, reload your shell configuration:
     ```bash
