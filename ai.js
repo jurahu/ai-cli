@@ -23,7 +23,7 @@ const userMessage = process.argv.slice(2).join(' ');
 // Call OpenAI endpoint
 const client = new OpenAI({
   apiKey: token,
-  baseURL: 'https://litellm.in.customink.com/'
+  baseURL: process.env.AI_CLI_LLM_URL || 'https://api.openai.com/v1' // Use LLM_URL env var or default OpenAI URL
 });
 
 
@@ -32,7 +32,8 @@ const chatCompletion = await client.chat.completions.create({
     { role: 'system', content: systemMessage },
     { role: 'user', content: userMessage }
   ],
-  model: 'Claude-3-Sonnet' // Ensure the model name is correct
+  //model: 'Claude-3.5-Sonnet' // Ensure the model name is correct
+  model: 'gpt-4o' // Ensure the model name is correct
 });
 
 const aiResult = chatCompletion.choices[0].message.content.trim();
